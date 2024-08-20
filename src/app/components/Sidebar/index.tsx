@@ -10,7 +10,7 @@ const Sidebar = ( )=> {
       {/* TOP LOGO */}
         <div className="flex gap-3 justify-between md:justify-normal items-center pt-8">
           <div className="">Logo</div>
-          <h1 className='font-extrabold text-2xl'>Shajjad</h1>
+          <h1 className='font-extrabold text-2xl'>DreekIT</h1>
         
           <button className='md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100' onClick={()=>{}}>
             <Menu className='w-4 h-4' />
@@ -26,7 +26,7 @@ const Sidebar = ( )=> {
       {/* Footer Here */}
 
       <div>
-          <p>&copy;</p>
+          <p className='text-center text-xs text-gray-500'>&copy; 2024 DreekIT</p>
       </div>
 
     </div>
