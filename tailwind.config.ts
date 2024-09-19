@@ -1,7 +1,6 @@
-import { light } from "@mui/material/styles/createPalette";
 import type { Config } from "tailwindcss";
-import  colors, { black, indigo, white }  from "tailwindcss/colors";
-import {createThemes} from "tw-colors";
+import { createThemes } from "tw-colors";
+import colors from "tailwindcss/colors";
 
 const baseColors = [
   "gray",
@@ -15,49 +14,47 @@ const baseColors = [
 ];
 
 const shadeMapping = {
-  "50":"900",
-  "100":"800",
-  "200":"700",
-  "300":"600",
-  "400":"500",
-  "500":"400",
-  "600":"300",
-  "700":"200",
-  "800":"100",
-  "900":"50",
+  "50": "900",
+  "100": "800",
+  "200": "700",
+  "300": "600",
+  "400": "500",
+  "500": "400",
+  "600": "300",
+  "700": "200",
+  "800": "100",
+  "900": "50",
 };
 
-const generateThemeObject = (colors: any,mapping: any, invert= false) => {
-    const theme: any ={};
-    baseColors.forEach((color)=>{
-      theme[color] = {};
-      Object.entries(mapping).forEach(([key, value]: any)=>{
-        const shadeKey = invert ? value : key;
-        theme[color][key] =colors[color][shadeKey];
-      })
+const generateThemeObject = (colors: any, mapping: any, invert = false) => {
+  const theme: any = {};
+  baseColors.forEach((color) => {
+    theme[color] = {};
+    Object.entries(mapping).forEach(([key, value]: any) => {
+      const shadeKey = invert ? value : key;
+      theme[color][key] = colors[color][shadeKey];
     });
-    return theme;
-}
+  });
+  return theme;
+};
 
-const lightTheme = generateThemeObject(colors,shadeMapping);
-const darkTheme = generateThemeObject(colors,shadeMapping,true);
+const lightTheme = generateThemeObject(colors, shadeMapping);
+const darkTheme = generateThemeObject(colors, shadeMapping, true);
 
-const themes={
-  light:{
+const themes = {
+  light: {
     ...lightTheme,
-    white: "#ffffff"
+    white: "#ffffff",
   },
-  dark:{
+  dark: {
     ...darkTheme,
     white: colors.gray["950"],
-    black :colors.gray["50"]
-  }
-}
-
+    black: colors.gray["50"],
+  },
+};
 
 const config: Config = {
-  darkMode:"class",
-
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",

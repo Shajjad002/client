@@ -1,9 +1,9 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from '@/app/redux';
-import { setIsSidebarColloapsed } from '@/state';
-import { Link, LucideIcon, Menu } from 'lucide-react'
-import { useParams, usePathname } from 'next/navigation';
+import { setIsSidebarColloapsed  } from '@/state';
+import { Archive, ArchiveIcon, CircleDollarSign, Clipboard, Layout, LayoutIcon, Link, LucideIcon, Menu, SlidersHorizontal, User } from "lucide-react";
+import { usePathname } from 'next/navigation';
 import React from 'react'
 
 interface SidebarLinkProps{
@@ -17,7 +17,7 @@ const SidebarLink = ({
   href,
   icon: Icon,
   label,
-  isCollapsed
+  isCollapsed,
 }: SidebarLinkProps)=>{
  const pathname = usePathname ();
  const isActive = pathname === href || (pathname === "/" && href === "/dashboard");
@@ -25,15 +25,16 @@ const SidebarLink = ({
  return(
   <Link href={href}>
     <div className={`cursor-pointer flex items-center ${
-        isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"}
-        hover : text-blue-500 hover:bg-blue-100 gap transition-colors ${ isActive ? "bg-blue-200 text-white" : ""}
+        isCollapsed ? "justify-center py-4" : 'justify-start px-8 py-4'}
+        hover:text-blue-500 hover:bg-blue-100 gap-3 transition-colors ${ isActive ? "bg-blue-200 text-white" : ""}
       }`}>
-
+        <Icon className="w-6 h-6 !text-gray-700"/>
+        <span className={`${isCollapsed ? "hidden": "block"} font-medium text-gray-700`}> {label} </span>
     </div>
   </Link>
- )
+ );
 
-}
+};
 
 const Sidebar = ( )=> {
   
@@ -62,8 +63,15 @@ const Sidebar = ( )=> {
 
         {/* LINKS */}
 
-      <div className='flex-grow mt-8'>
-        {/* LINKS Here */}
+      <div className="flex-grow mt-8">
+        <SidebarLink href="/dashboard" icon={Layout} label="Dashboard" isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/inventory" icon={Archive} label='Inventory' isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/products" icon={Clipboard} label='Products' isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/users" icon={User} label='Users' isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/settings" icon={SlidersHorizontal} label='Settings' isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/expenses" icon={CircleDollarSign} label='Expenses' isCollapsed={isSidebarCollapsed} />
+
+
       </div>
 
       {/* Footer Here */}
